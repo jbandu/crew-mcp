@@ -1,0 +1,204 @@
+{
+  "description": "FAA Part 117: Flightcrew Member Duty and Rest Requirements",
+  "effective_date": "2014-01-04",
+  "flight_time_limits": {
+    "rolling_28_day": {
+      "limit_hours": 100,
+      "description": "100 hours in any 28 consecutive days"
+    },
+    "rolling_365_day": {
+      "limit_hours": 1000,
+      "description": "1000 hours in any 365 consecutive calendar days"
+    },
+    "annual_calendar_year": {
+      "limit_hours": 1000,
+      "description": "1000 hours in a calendar year"
+    }
+  },
+  "fdp_limits": {
+    "description": "Flight Duty Period maximum limits based on start time and number of segments",
+    "unaugmented": {
+      "note": "FDP limits for unaugmented operations (single crew)",
+      "limits_by_segments_and_start_time": {
+        "2_segments": {
+          "0000-0459": 9.0,
+          "0500-0559": 9.5,
+          "0600-0659": 10.0,
+          "0700-1259": 13.0,
+          "1300-1659": 12.0,
+          "1700-2159": 12.0,
+          "2200-2259": 11.0,
+          "2300-2359": 10.0
+        },
+        "3_segments": {
+          "0000-0459": 9.0,
+          "0500-0559": 9.5,
+          "0600-0659": 10.0,
+          "0700-1259": 12.0,
+          "1300-1659": 12.0,
+          "1700-2159": 12.0,
+          "2200-2259": 11.0,
+          "2300-2359": 10.0
+        },
+        "4_segments": {
+          "0000-0459": 9.0,
+          "0500-0559": 9.5,
+          "0600-0659": 10.0,
+          "0700-1259": 12.0,
+          "1300-1659": 12.0,
+          "1700-2159": 12.0,
+          "2200-2259": 11.0,
+          "2300-2359": 10.0
+        },
+        "5_segments": {
+          "0000-0459": 9.0,
+          "0500-0559": 9.5,
+          "0600-0659": 10.0,
+          "0700-1259": 11.0,
+          "1300-1659": 11.0,
+          "1700-2159": 11.0,
+          "2200-2259": 10.0,
+          "2300-2359": 9.0
+        },
+        "6_segments": {
+          "0000-0459": 9.0,
+          "0500-0559": 9.5,
+          "0600-0659": 10.0,
+          "0700-1259": 11.0,
+          "1300-1659": 11.0,
+          "1700-2159": 11.0,
+          "2200-2259": 10.0,
+          "2300-2359": 9.0
+        },
+        "7_plus_segments": {
+          "0000-0459": 9.0,
+          "0500-0559": 9.5,
+          "0600-0659": 10.0,
+          "0700-1259": 10.0,
+          "1300-1659": 10.0,
+          "1700-2159": 10.0,
+          "2200-2259": 9.0,
+          "2300-2359": 9.0
+        }
+      }
+    },
+    "augmented": {
+      "note": "FDP limits for augmented operations (additional crew rest facilities)",
+      "class_1_rest_facility": {
+        "max_fdp_hours": 19.0,
+        "description": "Class 1 rest facility: flat bed, horizontal, separate from cockpit/cabin"
+      },
+      "class_2_rest_facility": {
+        "max_fdp_hours": 17.0,
+        "description": "Class 2 rest facility: flat or near flat, separate from passengers"
+      },
+      "class_3_rest_facility": {
+        "max_fdp_hours": 15.0,
+        "description": "Class 3 rest facility: seat with leg and foot support"
+      }
+    }
+  },
+  "rest_requirements": {
+    "minimum_rest": {
+      "description": "Minimum rest period before beginning a flight duty period",
+      "rules": [
+        {
+          "condition": "FDP scheduled for 9 hours or less",
+          "minimum_hours": 10,
+          "note": "At least 10 consecutive hours of rest"
+        },
+        {
+          "condition": "FDP scheduled for more than 9 hours but less than or equal to 13 hours",
+          "minimum_hours": 11,
+          "note": "At least 11 consecutive hours of rest"
+        },
+        {
+          "condition": "FDP scheduled for more than 13 hours",
+          "minimum_hours": 12,
+          "note": "At least 12 consecutive hours of rest"
+        }
+      ]
+    },
+    "30_hour_rest": {
+      "description": "30-hour rest requirement",
+      "frequency": "Once every 168 consecutive hours (7 days)",
+      "minimum_hours": 30,
+      "must_include_local_night": true,
+      "local_night_definition": "5 consecutive hours between 2200-0800 local time"
+    },
+    "56_hour_rest": {
+      "description": "56-hour rest requirement after consecutive nighttime operations",
+      "trigger": "After 3 consecutive flight duty periods that infringe on the WOCL",
+      "minimum_hours": 56,
+      "must_include_three_local_nights": true
+    }
+  },
+  "wocl": {
+    "description": "Window of Circadian Low - Period of maximum sleepiness",
+    "start_time": "0200",
+    "end_time": "0559",
+    "time_zone": "local",
+    "note": "Time period when most humans experience peak sleepiness (2AM-6AM local time)"
+  },
+  "consecutive_nighttime_operations": {
+    "definition": "Flight duty period that encroaches on the WOCL",
+    "maximum_consecutive": 3,
+    "required_rest_after": 56,
+    "description": "After 3 consecutive FDPs that infringe on WOCL, crew must have 56 hours rest including 3 local nights"
+  },
+  "reserve": {
+    "description": "Reserve duty period rules",
+    "airport_reserve": {
+      "max_period": 14,
+      "counts_as_fdp": true,
+      "description": "Reserve at airport cannot exceed 14 hours"
+    },
+    "short_call_reserve": {
+      "definition": "Reserve with less than 2 hours notification",
+      "max_daily_hours": 14,
+      "rest_before": 10,
+      "description": "Short call reserve limited to 14 hours in any 24-hour period"
+    },
+    "long_call_reserve": {
+      "definition": "Reserve with 2 hours or more notification",
+      "no_specific_limit": true,
+      "description": "Long call reserve has no specific hourly limit but must respect FDP limits"
+    }
+  },
+  "cumulative_limitations": {
+    "flight_duty_period": {
+      "60_consecutive_days": {
+        "limit_hours": 190,
+        "description": "Max 190 FDP hours in any 60 consecutive days"
+      }
+    }
+  },
+  "exceptions": {
+    "unforeseen_circumstances": {
+      "description": "Extensions allowed for unforeseen operational circumstances",
+      "max_extension_hours": 2,
+      "conditions": [
+        "Must be unforeseen at time of crew scheduling",
+        "Cannot be used to reschedule known operational issues",
+        "Subsequent rest must be increased by amount of extension"
+      ]
+    },
+    "split_duty": {
+      "description": "FDP may be extended with split duty rest opportunity",
+      "conditions": [
+        "At least 3 hours rest opportunity",
+        "Rest must occur between 2200-0500 home base time",
+        "FDP extension cannot exceed actual time resting"
+      ]
+    }
+  },
+  "fitness_for_duty": {
+    "description": "Requirements for flightcrew member fitness",
+    "crew_responsibility": "Flightcrew member must report for duty rested and prepared",
+    "certificate_holder_responsibility": "Certificate holder must provide adequate rest opportunities",
+    "fatigue_reporting": {
+      "required": true,
+      "description": "Certificate holder must have fatigue risk management system"
+    }
+  }
+}

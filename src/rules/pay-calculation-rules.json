@@ -1,0 +1,207 @@
+{
+  "pilot_base_pay": {
+    "rule_type": "BASE_PAY",
+    "crew_type": "PILOT",
+    "description": "Base hourly pay rates for pilots by position",
+    "positions": {
+      "CAPTAIN": {
+        "hourly_rate": 250,
+        "guarantee_hours": 75,
+        "currency": "USD"
+      },
+      "FIRST_OFFICER": {
+        "hourly_rate": 180,
+        "guarantee_hours": 75,
+        "currency": "USD"
+      }
+    }
+  },
+  "flight_attendant_base_pay": {
+    "rule_type": "BASE_PAY",
+    "crew_type": "FLIGHT_ATTENDANT",
+    "description": "Base hourly pay rates for flight attendants by position",
+    "positions": {
+      "LEAD_FA": {
+        "hourly_rate": 52,
+        "guarantee_hours": 75,
+        "currency": "USD"
+      },
+      "FA": {
+        "hourly_rate": 45,
+        "guarantee_hours": 75,
+        "currency": "USD"
+      }
+    }
+  },
+  "per_diem": {
+    "rule_type": "PER_DIEM",
+    "crew_type": "ALL",
+    "description": "Per diem rates based on duty hours",
+    "rates": {
+      "domestic": {
+        "rate_per_hour": 2.50,
+        "minimum_hours": 4,
+        "currency": "USD"
+      },
+      "international": {
+        "rate_per_hour": 3.00,
+        "minimum_hours": 4,
+        "currency": "USD"
+      }
+    }
+  },
+  "premium_pay": {
+    "rule_type": "PREMIUM",
+    "crew_type": "ALL",
+    "description": "Premium pay for special circumstances",
+    "premiums": {
+      "night_flying": {
+        "description": "Night flying premium for hours between 22:00-06:00 local time",
+        "rate_multiplier": 1.5,
+        "hours": "22:00-06:00",
+        "applies_to": ["PILOT"]
+      },
+      "holiday": {
+        "description": "Holiday premium for working on recognized holidays",
+        "rate_multiplier": 2.0,
+        "holidays": [
+          "New Year's Day",
+          "Memorial Day",
+          "Independence Day",
+          "Labor Day",
+          "Thanksgiving",
+          "Christmas"
+        ],
+        "applies_to": ["ALL"]
+      },
+      "international": {
+        "description": "International flight premium (flat amount per trip)",
+        "flat_amount": 100,
+        "currency": "USD",
+        "applies_to": ["PILOT", "FLIGHT_ATTENDANT"]
+      },
+      "red_eye": {
+        "description": "Red-eye flight premium (departure between 00:00-05:00)",
+        "flat_amount": 75,
+        "currency": "USD",
+        "applies_to": ["PILOT", "FLIGHT_ATTENDANT"]
+      },
+      "short_call_reserve": {
+        "description": "Short call reserve premium (on-call with <2 hour callout)",
+        "daily_rate": 50,
+        "currency": "USD",
+        "applies_to": ["PILOT", "FLIGHT_ATTENDANT"]
+      }
+    }
+  },
+  "overtime": {
+    "rule_type": "OVERTIME",
+    "crew_type": "ALL",
+    "description": "Overtime calculation rules",
+    "thresholds": {
+      "monthly": {
+        "threshold_hours": 85,
+        "rate_multiplier": 1.5,
+        "description": "Hours over 85 in a month paid at 1.5x"
+      },
+      "daily": {
+        "threshold_hours": 10,
+        "rate_multiplier": 1.5,
+        "description": "Hours over 10 in a single duty period paid at 1.5x"
+      }
+    }
+  },
+  "guarantee": {
+    "rule_type": "GUARANTEE",
+    "crew_type": "ALL",
+    "description": "Minimum guarantee calculations",
+    "rules": {
+      "monthly_guarantee": {
+        "description": "Minimum monthly guarantee regardless of hours flown",
+        "positions": {
+          "CAPTAIN": {
+            "guaranteed_hours": 75,
+            "guaranteed_amount": 18750
+          },
+          "FIRST_OFFICER": {
+            "guaranteed_hours": 75,
+            "guaranteed_amount": 13500
+          },
+          "LEAD_FA": {
+            "guaranteed_hours": 75,
+            "guaranteed_amount": 3900
+          },
+          "FA": {
+            "guaranteed_hours": 75,
+            "guaranteed_amount": 3375
+          }
+        }
+      },
+      "daily_minimum": {
+        "description": "Minimum pay for a duty day (4 hours minimum)",
+        "minimum_hours": 4
+      }
+    }
+  },
+  "longevity_pay": {
+    "rule_type": "PREMIUM",
+    "crew_type": "ALL",
+    "description": "Longevity pay based on years of service",
+    "tiers": [
+      {
+        "min_years": 0,
+        "max_years": 2,
+        "percentage_increase": 0
+      },
+      {
+        "min_years": 3,
+        "max_years": 5,
+        "percentage_increase": 2
+      },
+      {
+        "min_years": 6,
+        "max_years": 10,
+        "percentage_increase": 5
+      },
+      {
+        "min_years": 11,
+        "max_years": 15,
+        "percentage_increase": 8
+      },
+      {
+        "min_years": 16,
+        "max_years": null,
+        "percentage_increase": 12
+      }
+    ]
+  },
+  "training_pay": {
+    "rule_type": "SPECIAL",
+    "crew_type": "ALL",
+    "description": "Pay for training days",
+    "rates": {
+      "simulator_training": {
+        "hourly_rate": 75,
+        "applies_to": ["PILOT"]
+      },
+      "classroom_training": {
+        "daily_rate": 200,
+        "applies_to": ["PILOT", "FLIGHT_ATTENDANT"]
+      },
+      "line_check": {
+        "hourly_rate": 100,
+        "applies_to": ["PILOT"]
+      }
+    }
+  },
+  "deadhead_pay": {
+    "rule_type": "SPECIAL",
+    "crew_type": "ALL",
+    "description": "Pay for deadhead positioning",
+    "rate": {
+      "percentage_of_base": 50,
+      "minimum_hours": 2,
+      "description": "Deadhead paid at 50% of base rate, minimum 2 hours"
+    }
+  }
+}
